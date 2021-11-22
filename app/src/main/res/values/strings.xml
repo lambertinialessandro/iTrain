@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">iTrain</string>
+
+    <!-- activity_training -->
+    <string name="title_activity_training">TrainingActivity</string>
+    <string name="Training_Title">Training</string>
+</resources>
