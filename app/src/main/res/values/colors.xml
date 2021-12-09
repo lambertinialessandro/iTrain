@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
+    <color name="light_orange">#FFB9A1</color>
+    <color name="light_red">#FF92A7</color>
+    <color name="orange">#FFFF7544</color>
+    <color name="red">#FFFF234E</color>
+
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
     <!-- activity_training -->
-    <color name="TitleTrainingColor">#00c331</color>
-    <color name="loadingBarTraining">#2F871A</color>
+    <color name="TitleTrainingColor">@color/white</color>
+    <color name="loadingBarTraining">@color/red</color>
 
     <!-- training_listactivity_row -->
-    <color name="backgroundTrainingRow">#b5f4c7</color>
-    <color name="TitleTrainingRowColor">#00c331</color>
+    <color name="backgroundTrainingRow">@color/light_orange</color>
+    <color name="TitleTrainingRowColor">@color/white</color>
+
+    <!-- activity_Exercise -->
+    <color name="TitleExercise">@color/white</color>
+
+    <color name="btnTimerExerciseDisabled">#CDCDCD</color>
+    <color name="btnTimerExerciseEnabled">@color/orange</color>
 </resources>

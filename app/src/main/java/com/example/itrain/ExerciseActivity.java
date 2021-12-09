@@ -1,18 +1,31 @@
 package com.example.itrain;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
+import android.animation.Animator;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Point;
 import android.graphics.Rect;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.Display;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.itrain.ExerciseDB.Exercise;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -30,100 +43,99 @@ public class ExerciseActivity extends AppCompatActivity {
     private TextView txtTitleExercises;
     private EditText txtDataExercise;
     private TextView timeTest;
-    private TextView typeTest;
+    private TextView settingTest;
+
+    private RelativeLayout backgroundTimer;
 
     private ImageButton btnDellExercise;
     private ImageButton btnSettingsExercise;
     private ImageButton btnTimerExercise;
 
-    private String name;
+    private String fileName;
     private String path2file;
+
+    private String message;
     private int time;
     private String type;
+    private String setting;
+
+    private AnimatorSet animation = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise);
 
-        this.name = getIntent().getExtras().getString("name");
+        /*ExerciseDatabase db = Room.databaseBuilder(getApplicationContext(),
+                ExerciseDatabase.class, "iTrain").build();
+        ExerciseDAO exerciseDao = db.ExerciseDAO();
+        List<Exercise> Exercises = exerciseDao.getAll();*/
+
+        /*Exercise e1 = new Exercise("Press", "1+1", 1, Exercise.enumType.type_leg, "");
+        Exercise e2 = new Exercise("Chest", "2+2", 1, Exercise.enumType.type_leg, "");
+        Exercise e3 = new Exercise("Back", "3+3", 1, Exercise.enumType.type_leg, "");*/
+
+        this.fileName = getIntent().getExtras().getString("name");
         this.path2file = getIntent().getExtras().getString("path2file");
 
         txtTitleExercises = (TextView) findViewById(R.id.txtTitleExercises);
-        txtTitleExercises.setText(name);
+        txtTitleExercises.setText(fileName);
 
         txtDataExercise = (EditText) findViewById(R.id.txtDataExercise);
         txtDataExercise.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
-                    FileOutputStream fos = null;
-                    try {
-                        File ff = new File(path2file);
-                        fos = new FileOutputStream(ff);
-                        fos.write((txtDataExercise.getText().toString()).getBytes());
-                        fos.flush();
-                        fos.close();
-                    } catch (FileNotFoundException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                } else {
-
+                    saveDataOnFile();
                 }
             }
         });
-        StringBuilder message = new StringBuilder();
+
         JSONObject json = null;
         try {
             FileInputStream fis = new FileInputStream(path2file);
             InputStreamReader inputStreamReader = new InputStreamReader(fis, StandardCharsets.UTF_8);
             BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
 
+            StringBuilder stringBuilder = new StringBuilder();
             String line = bufferedReader.readLine();
-            while (line != null) {
-                message.append(line);
-
+            while (line != null){
+                stringBuilder.append(line).append("\n");
                 line = bufferedReader.readLine();
-                if (line != null)
-                    message.append("\n");
             }
-
-            //json = new JSONObject(message.toString());
+            bufferedReader.close();
 
             bufferedReader.close();
             inputStreamReader.close();
             fis.close();
+
+            Log.d("###", stringBuilder.toString());
+            json = new JSONObject(stringBuilder.toString());
+
+            this.message = json.getString("message");
+            this.time = json.getInt("time");
+            this.type = json.getString("type");
+            this.setting = json.getString("setting");
         }
         catch (IOException e) {
             e.printStackTrace();
-        } /*catch (JSONException e) {
-            e.printStackTrace();
-
-            json = new JSONObject();
-            try {
-                json.put("name", "NaS");
-                json.put("message", "");
-                json.put("time", 60);
-                json.put("type", "Leg");
-            } catch (JSONException jsonException) {
-                jsonException.printStackTrace();
-            }
-        }*/
-        /*try {
-            txtDataExercise.setText(json.get("message").toString());
-            this.time = Integer.parseInt(json.get("time").toString());
-            this.type = json.get("type").toString();
         } catch (JSONException e) {
             e.printStackTrace();
-        }*/
 
-        /*timeTest = (TextView) findViewById(R.id.timeTest);
-        timeTest.setText(String.valueOf(this.time));
-        typeTest = (TextView) findViewById(R.id.typeTest);
-        typeTest.setText(this.type);*/
-        txtDataExercise.setText(message);
+            Toast.makeText(this, "Problem", Toast.LENGTH_SHORT).show();
+
+            this.message = "";
+            this.time = 60;
+            this.type = "";
+            this.setting = "";
+        }
+
+        timeTest = (TextView) findViewById(R.id.timeTest);
+        settingTest = (TextView) findViewById(R.id.settingTest);
+        updateTexts();
+
+
+        backgroundTimer = (RelativeLayout) findViewById(R.id.backgroundTimer);
 
         btnDellExercise = (ImageButton) findViewById(R.id.btnDellExercise);
         btnDellExercise.setOnClickListener(new View.OnClickListener() {
@@ -158,14 +170,140 @@ public class ExerciseActivity extends AppCompatActivity {
         btnSettingsExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AlertDialog.Builder alertDialog = new AlertDialog.Builder(ExerciseActivity.this);
+                alertDialog.setTitle("Modify exercise");
+
+                LayoutInflater inflater = getLayoutInflater();
+                View dialogView = inflater.inflate(R.layout.alter_dialog_modify_exercise, null);
+                alertDialog.setView(dialogView);
+
+                EditText editTextTime = (EditText) dialogView.findViewById(R.id.editTextTime);
+                editTextTime.setText(Integer.toString(time));
+                Spinner spinnerType = (Spinner) dialogView.findViewById(R.id.spinnerType);
+                for (int i=0;i<spinnerType.getCount();i++){
+                    if (spinnerType.getItemAtPosition(i).equals(type)){
+                        spinnerType.setSelection(i);
+                        break;
+                    }
+                }
+                EditText editTextSetting = (EditText) dialogView.findViewById(R.id.editTextSetting);
+                editTextSetting.setText(setting);
+
+                alertDialog.setPositiveButton("Modify",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                int appTime = Integer.parseInt(editTextTime.getText().toString());
+                                String appType = spinnerType.getSelectedItem().toString();
+                                String appSetting = editTextSetting.getText().toString();
+
+                                // TODO check correctnes
+
+                                time = appTime;
+                                type = appType;
+                                setting = appSetting;
+
+                                saveDataOnFile();
+                                updateTexts();
+                            }
+                        });
+                alertDialog.setNegativeButton("Cancel",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int which) {
+                                dialog.cancel();
+                            }
+                        });
+                alertDialog.show();
             }
         });
         btnTimerExercise = (ImageButton) findViewById(R.id.btnTimerExercise);
         btnTimerExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                final float scale = view.getContext().getResources().getDisplayMetrics().density;
+                Point size = new Point();
+                Display display = getWindowManager().getDefaultDisplay();
+                display.getSize(size);
+                int height = size.y-250;
+
+                ObjectAnimator fadeIn = ObjectAnimator.ofFloat(backgroundTimer, "alpha", 1f);
+                fadeIn.setDuration(1);
+
+                ObjectAnimator GoDown = ObjectAnimator.ofFloat(backgroundTimer, "translationY", height);
+                GoDown.setDuration(time*1000);
+                ObjectAnimator fadeOut = ObjectAnimator.ofFloat(backgroundTimer, "alpha", 0f);
+                fadeOut.setDuration(1);
+
+                ObjectAnimator GoUp = ObjectAnimator.ofFloat(backgroundTimer, "translationY", 0);
+                GoUp.setDuration(1);
+
+                animation = new AnimatorSet();
+                //animation.play(fadeIn).with(whiteButton);
+                animation.play(GoDown).after(fadeIn);
+                animation.play(fadeOut).after(GoDown);
+                //animation.play(fadeOut).with(colorButton)
+                animation.play(GoUp).after(fadeOut);
+
+                animation.addListener(new Animator.AnimatorListener() {
+
+                    @Override
+                    public void onAnimationStart(Animator animation) {
+                        btnTimerExercise.setClickable(false);
+                        btnTimerExercise.setColorFilter(ContextCompat.getColor(view.getContext(), R.color.btnTimerExerciseDisabled));
+
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animator animation) {}
+
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        btnTimerExercise.setClickable(true);
+                        btnTimerExercise.setColorFilter(ContextCompat.getColor(view.getContext(), R.color.btnTimerExerciseEnabled));
+                    }
+
+                    @Override
+                    public void onAnimationCancel(Animator animation) {}
+                });
+
+                animation.start();
+
             }
         });
+    }
+
+    private void updateTexts() {
+        txtDataExercise.setText(this.message);
+        timeTest.setText(this.time + " s");
+        settingTest.setText(this.setting);
+    }
+
+    private void saveDataOnFile() {
+        FileOutputStream fos = null;
+        try {
+            File ff = new File(this.path2file);
+            fos = new FileOutputStream(ff);
+
+            JSONObject json = new JSONObject();
+            json.put("name", this.fileName);
+            json.put("message", this.txtDataExercise.getText().toString());
+            json.put("time", this.time);
+            json.put("type", this.type);
+            json.put("setting", this.setting);
+
+            fos.write((json.toString()).getBytes());
+
+            fos.flush();
+            fos.close();
+            Toast.makeText(ExerciseActivity.this, "Saved!", Toast.LENGTH_SHORT).show();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+
+            Toast.makeText(ExerciseActivity.this, "Unable to save!", Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

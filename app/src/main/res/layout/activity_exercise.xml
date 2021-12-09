@@ -2,6 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -10,25 +11,27 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="0dp"
+        android:background="@drawable/gradient_title_background"
         android:orientation="vertical"
         android:padding="5dp">
 
         <TextView
             android:id="@+id/txtTitleExercises"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:text="NaS"
-            android:textColor="@color/TitleTrainingRowColor"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="30dp"
+            android:layout_centerVertical="true"
+            android:layout_toStartOf="@id/cardDellExercise"
+            android:text="@string/NaS"
+            android:textColor="@color/TitleExercise"
             android:textSize="24sp"
             android:textStyle="bold" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardSettingsExercise"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="20dp"
@@ -41,18 +44,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="?android:attr/selectableItemBackground"
+                android:tint="@color/light_orange"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_baseline_settings_24" />
+                android:src="@drawable/ic_baseline_settings_24"
+                android:contentDescription="@string/contexDescBtnSettingsE"/>
 
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardDellExercise"
-            android:layout_width="45dp"
-            android:layout_height="45dp"
-            android:layout_alignEnd="@+id/cardSettingsExercise"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_toStartOf="@+id/cardSettingsExercise"
             android:layout_marginTop="5dp"
-            android:layout_marginEnd="65dp"
+            android:layout_marginEnd="25dp"
             android:layout_marginBottom="5dp"
             app:cardCornerRadius="12dp"
             app:cardElevation="6dp">
@@ -62,8 +67,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="?android:attr/selectableItemBackground"
+                android:tint="@color/light_red"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_baseline_delete_forever_24" />
+                android:src="@drawable/ic_baseline_delete_forever_24"
+                android:contentDescription="@string/contexDescBtnDellE"/>
 
         </androidx.cardview.widget.CardView>
 
@@ -72,17 +79,25 @@
     <RelativeLayout
         android:id="@+id/relativeContent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginEnd="0dp"
         android:orientation="vertical"
-        android:padding="5dp"
         android:layout_below="@+id/relativeTitle">
+
+        <RelativeLayout
+            android:id="@+id/backgroundTimer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:alpha="0"
+            android:background="@drawable/reverse_gradient_title_background"
+            android:orientation="vertical" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cardTimerExercise"
             android:layout_width="match_parent"
             android:layout_height="55dp"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"
             android:layout_marginHorizontal="15dp"
             app:cardCornerRadius="12dp"
@@ -92,10 +107,14 @@
                 android:id="@+id/btnTimerExercise"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="5dp"
+                android:alpha="0.5"
                 android:background="?android:attr/selectableItemBackground"
+                android:contentDescription="@string/contexDescbtnTimerE"
+                android:padding="5dp"
                 android:scaleType="fitCenter"
-                android:src="@drawable/ic_baseline_timer_24" />
+                android:src="@drawable/ic_baseline_timer_24"
+                android:tint="@color/orange"
+                tools:ignore="ImageContrastCheck" />
 
         </androidx.cardview.widget.CardView>
 
@@ -115,13 +134,18 @@
                 android:id="@+id/txtDataExercise"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:minHeight="45dp"
                 android:layout_below="@+id/txtTitleExercises"
+                android:layout_marginHorizontal="5dp"
                 android:drawablePadding="10dp"
                 android:gravity="top"
+                android:hint="@string/hintDataExercise"
+                android:importantForAutofill="no"
                 android:inputType="textMultiLine"
+                android:maxHeight="450dp"
+                android:minHeight="48dp"
                 android:textColor="#000000"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                tools:ignore="TextContrastCheck" />
 
         </androidx.cardview.widget.CardView>
 
@@ -130,10 +154,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/cardDataExercise"
-            android:layout_marginStart="15dp"
             android:layout_marginVertical="10dp"
-            android:text="Time: "
-            android:textSize="24sp"/>
+            android:layout_marginStart="15dp"
+            android:text="@string/textTimeLable"
+            android:textSize="24sp" />
 
         <TextView
             android:id="@+id/timeTest"
@@ -147,17 +171,17 @@
             android:textSize="24sp" />
 
         <TextView
-            android:id="@+id/typeLable"
+            android:id="@+id/settingLable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/timeLable"
-            android:layout_marginStart="15dp"
             android:layout_marginVertical="10dp"
-            android:text="Type: "
-            android:textSize="24sp"/>
+            android:layout_marginStart="15dp"
+            android:text="@string/textSettingLable"
+            android:textSize="24sp" />
 
         <TextView
-            android:id="@+id/typeTest"
+            android:id="@+id/settingTest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/timeLable"

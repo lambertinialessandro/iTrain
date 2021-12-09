@@ -1,7 +1,24 @@
 <resources>
     <string name="app_name">iTrain</string>
 
+    <string name="NaS">NaS</string>
+
     <!-- activity_training -->
     <string name="title_activity_training">TrainingActivity</string>
-    <string name="Training_Title">Training</string>
+    <string name="Training_Title">iTrain</string>
+    <string name="contexDescBtnAddExercise">add new exercise</string>
+    <string name="contexDescBtnChangeSort">sort exercises</string>
+
+    <!-- -->
+    <string name="textTimeLable">Time: </string>
+    <string name="textSettingLable">Setting: </string>
+    <string name="hintDataExercise">write here your resoults</string>
+
+    <string name="contexDescBtnSettingsE">change settings</string>
+    <string name="contexDescBtnDellE">delete exercise</string>
+    <string name="contexDescbtnTimerE">start timer</string>
+
+    <!-- exercise enumerator -->
+    <string name="leg_type">leg</string>
+    <string name="arm_type">arm</string>
 </resources>
