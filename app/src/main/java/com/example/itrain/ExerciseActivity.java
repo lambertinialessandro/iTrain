@@ -25,7 +25,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.itrain.ExerciseDB.Exercise;
+//import com.example.itrain.ExerciseDB.Exercise;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -142,9 +142,8 @@ public class ExerciseActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(ExerciseActivity.this);
-                alertDialog.setTitle("Detele exercise");
+                alertDialog.setTitle("Delete exercise");
 
-                final EditText input = new EditText(ExerciseActivity.this);
                 alertDialog.setPositiveButton("Yes",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
@@ -178,7 +177,7 @@ public class ExerciseActivity extends AppCompatActivity {
                 alertDialog.setView(dialogView);
 
                 EditText editTextTime = (EditText) dialogView.findViewById(R.id.editTextTime);
-                editTextTime.setText(Integer.toString(time));
+                editTextTime.setText(String.valueOf(time));
                 Spinner spinnerType = (Spinner) dialogView.findViewById(R.id.spinnerType);
                 for (int i=0;i<spinnerType.getCount();i++){
                     if (spinnerType.getItemAtPosition(i).equals(type)){
@@ -196,7 +195,7 @@ public class ExerciseActivity extends AppCompatActivity {
                                 String appType = spinnerType.getSelectedItem().toString();
                                 String appSetting = editTextSetting.getText().toString();
 
-                                // TODO check correctnes
+                                // TODO check correctness
 
                                 time = appTime;
                                 type = appType;
@@ -219,7 +218,6 @@ public class ExerciseActivity extends AppCompatActivity {
         btnTimerExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final float scale = view.getContext().getResources().getDisplayMetrics().density;
                 Point size = new Point();
                 Display display = getWindowManager().getDefaultDisplay();
                 display.getSize(size);
@@ -229,7 +227,7 @@ public class ExerciseActivity extends AppCompatActivity {
                 fadeIn.setDuration(1);
 
                 ObjectAnimator GoDown = ObjectAnimator.ofFloat(backgroundTimer, "translationY", height);
-                GoDown.setDuration(time*1000);
+                GoDown.setDuration(time* 1000L);
                 ObjectAnimator fadeOut = ObjectAnimator.ofFloat(backgroundTimer, "alpha", 0f);
                 fadeOut.setDuration(1);
 
@@ -273,7 +271,7 @@ public class ExerciseActivity extends AppCompatActivity {
 
     private void updateTexts() {
         txtDataExercise.setText(this.message);
-        timeTest.setText(this.time + " s");
+        timeTest.setText(String.format("%d s", this.time));
         settingTest.setText(this.setting);
     }
 

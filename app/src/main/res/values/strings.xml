@@ -4,19 +4,35 @@
     <string name="NaS">NaS</string>
 
     <!-- activity_training -->
-    <string name="title_activity_training">TrainingActivity</string>
-    <string name="Training_Title">iTrain</string>
-    <string name="contexDescBtnAddExercise">add new exercise</string>
-    <string name="contexDescBtnChangeSort">sort exercises</string>
+    <string name="at_title">@string/app_name</string>
+    <string name="at_contexDescBtnAddExercise">add new exercise</string>
+    <string name="at_contexDescBtnChangeSort">sort exercises</string>
 
-    <!-- -->
-    <string name="textTimeLable">Time: </string>
-    <string name="textSettingLable">Setting: </string>
-    <string name="hintDataExercise">write here your resoults</string>
+    <!-- activity_exercise -->
+    <string name="ae_textTimeLable">Time</string>
+    <string name="ae_textSettingLable">Setting</string>
+    <string name="ae_hintDataExercise">write here your results</string>
+    <string name="ae_contexDescBtnSettingsE">change settings</string>
+    <string name="ae_contexDescBtnDellE">delete exercise</string>
+    <string name="ae_contexDescBtnTimerE">start timer</string>
 
-    <string name="contexDescBtnSettingsE">change settings</string>
-    <string name="contexDescBtnDellE">delete exercise</string>
-    <string name="contexDescbtnTimerE">start timer</string>
+    <!-- alter_dialog_add_exercise -->
+    <string name="adae_textTitleExercise">Name</string>
+    <string name="adae_hintTitleExercise">exercise name</string>
+    <string name="adae_textTime">Time</string>
+    <string name="adae_textHintTime">60</string>
+    <string name="adae_hintTime">time in seconds</string>
+    <string name="adae_textType">Type</string>
+    <string name="adae_textSetting">Setting</string>
+    <string name="adae_hintSetting">machine settings</string>
+
+    <!-- alter_dialog_modify_exercise -->
+    <string name="adme_textTime">Time</string>
+    <string name="adme_textHintTime">60</string>
+    <string name="adme_hintTime">time in seconds</string>
+    <string name="adme_textType">Type</string>
+    <string name="adme_textSetting">Setting</string>
+    <string name="adme_hintSetting">machine settings</string>
 
     <!-- exercise enumerator -->
     <string name="leg_type">leg</string>

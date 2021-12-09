@@ -79,14 +79,13 @@ public class TrainingActivity extends AppCompatActivity implements CustomRecycle
 
             names.add(name);
         }
-        Collections.sort(names);
 
         Log.d("###", names.toString());
 
 
         File f = new File(pathDir);
         for (File ff : f.listFiles()){
-            Log.d("###", ff.getName().toString());
+            Log.d("###", ff.getName());
             //ff.delete();
         }
 

@@ -2,6 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -30,10 +31,12 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
-                android:text="Name"
+                android:text="@string/adae_textTitleExercise"
                 android:textColor="@color/TitleTrainingRowColor"
                 android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="TextContrastCheck" />
+
             <EditText
                 android:id="@+id/editTextTitleExercise"
                 android:layout_width="match_parent"
@@ -43,7 +46,12 @@
                 android:layout_marginStart="100dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
-                android:textSize="24sp" />
+                android:hint="@string/ae_hintDataExercise"
+                android:importantForAutofill="no"
+                android:inputType="text"
+                android:textColorHint="#795548"
+                android:textSize="24sp"
+                tools:ignore="TextContrastCheck" />
 
             <TextView
                 android:id="@+id/txtTime"
@@ -53,10 +61,11 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
-                android:text="Time"
+                android:text="@string/adae_textTime"
                 android:textColor="@color/TitleTrainingRowColor"
                 android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="TextContrastCheck" />
 
             <EditText
                 android:id="@+id/editTextTime"
@@ -69,8 +78,10 @@
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
                 android:inputType="number"
-                android:text="60"
-                android:textSize="24sp" />
+                android:text="@string/adae_textHintTime"
+                android:hint="@string/adae_hintTime"
+                android:textSize="24sp"
+                android:importantForAutofill="no" />
 
             <TextView
                 android:id="@+id/txtType"
@@ -80,15 +91,16 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
-                android:text="Type"
+                android:text="@string/adae_textType"
                 android:textColor="@color/TitleTrainingRowColor"
                 android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="TextContrastCheck" />
 
             <Spinner
                 android:id="@+id/spinnerType"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_below="@id/editTextTime"
                 android:layout_alignStart="@id/txtType"
                 android:layout_marginVertical="10dp"
@@ -108,10 +120,11 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
-                android:text="Setting"
+                android:text="@string/adae_textSetting"
                 android:textColor="@color/TitleTrainingRowColor"
                 android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="TextContrastCheck" />
 
             <EditText
                 android:id="@+id/editTextSetting"
@@ -123,8 +136,12 @@
                 android:layout_marginStart="100dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
+                android:hint="@string/adae_hintSetting"
+                android:importantForAutofill="no"
+                android:inputType="text"
                 android:text=""
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                tools:ignore="TextContrastCheck" />
 
             <!-- Button -->
 

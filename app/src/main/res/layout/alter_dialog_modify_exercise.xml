@@ -2,6 +2,7 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -30,10 +31,12 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
-                android:text="Time"
+                android:text="@string/adme_textTime"
                 android:textColor="@color/TitleTrainingRowColor"
                 android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="TextContrastCheck" />
+
             <EditText
                 android:id="@+id/editTextTime"
                 android:layout_width="match_parent"
@@ -43,8 +46,10 @@
                 android:layout_marginStart="100dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
+                android:hint="@string/adme_hintTime"
+                android:importantForAutofill="no"
                 android:inputType="number"
-                android:text="60"
+                android:text="@string/adme_textHintTime"
                 android:textSize="24sp" />
 
             <TextView
@@ -55,15 +60,16 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
-                android:text="Type"
+                android:text="@string/adme_textType"
                 android:textColor="@color/TitleTrainingRowColor"
                 android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="TextContrastCheck" />
 
             <Spinner
                 android:id="@+id/spinnerType"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="48dp"
                 android:layout_below="@id/editTextTime"
                 android:layout_alignStart="@id/txtType"
                 android:layout_marginVertical="10dp"
@@ -83,10 +89,12 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
-                android:text="Setting"
+                android:text="@string/adme_textSetting"
                 android:textColor="@color/TitleTrainingRowColor"
                 android:textSize="24sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                tools:ignore="TextContrastCheck" />
+
             <EditText
                 android:id="@+id/editTextSetting"
                 android:layout_width="match_parent"
@@ -97,8 +105,12 @@
                 android:layout_marginStart="100dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
+                android:hint="@string/adme_hintSetting"
+                android:importantForAutofill="no"
+                android:inputType="text"
                 android:text=""
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                tools:ignore="TextContrastCheck" />
 
             <!-- Button -->
 

@@ -12,7 +12,7 @@
     <color name="TitleTrainingColor">@color/white</color>
     <color name="loadingBarTraining">@color/red</color>
 
-    <!-- training_listactivity_row -->
+    <!-- training_list_activity_row -->
     <color name="backgroundTrainingRow">@color/light_orange</color>
     <color name="TitleTrainingRowColor">@color/white</color>
 

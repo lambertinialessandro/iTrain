@@ -47,7 +47,7 @@
                 android:tint="@color/light_orange"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_baseline_settings_24"
-                android:contentDescription="@string/contexDescBtnSettingsE"/>
+                android:contentDescription="@string/ae_contexDescBtnSettingsE"/>
 
         </androidx.cardview.widget.CardView>
 
@@ -70,7 +70,7 @@
                 android:tint="@color/light_red"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_baseline_delete_forever_24"
-                android:contentDescription="@string/contexDescBtnDellE"/>
+                android:contentDescription="@string/ae_contexDescBtnDellE"/>
 
         </androidx.cardview.widget.CardView>
 
@@ -109,7 +109,7 @@
                 android:layout_height="match_parent"
                 android:alpha="0.5"
                 android:background="?android:attr/selectableItemBackground"
-                android:contentDescription="@string/contexDescbtnTimerE"
+                android:contentDescription="@string/ae_contexDescBtnTimerE"
                 android:padding="5dp"
                 android:scaleType="fitCenter"
                 android:src="@drawable/ic_baseline_timer_24"
@@ -138,7 +138,7 @@
                 android:layout_marginHorizontal="5dp"
                 android:drawablePadding="10dp"
                 android:gravity="top"
-                android:hint="@string/hintDataExercise"
+                android:hint="@string/ae_hintDataExercise"
                 android:importantForAutofill="no"
                 android:inputType="textMultiLine"
                 android:maxHeight="450dp"
@@ -156,7 +156,7 @@
             android:layout_below="@+id/cardDataExercise"
             android:layout_marginVertical="10dp"
             android:layout_marginStart="15dp"
-            android:text="@string/textTimeLable"
+            android:text="@string/ae_textTimeLable"
             android:textSize="24sp" />
 
         <TextView
@@ -177,7 +177,7 @@
             android:layout_below="@+id/timeLable"
             android:layout_marginVertical="10dp"
             android:layout_marginStart="15dp"
-            android:text="@string/textSettingLable"
+            android:text="@string/ae_textSettingLable"
             android:textSize="24sp" />
 
         <TextView

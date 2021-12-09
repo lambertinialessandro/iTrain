@@ -41,8 +41,8 @@ public class CustomRecyclerViewTrainingAdapter extends RecyclerView.Adapter<Cust
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        private TextView txtTitleExercises;
-        private CardView rlBtnInfoExercise;
+        private final TextView txtTitleExercises;
+        private final CardView rlBtnInfoExercise;
 
         private String name;
 
@@ -62,7 +62,7 @@ public class CustomRecyclerViewTrainingAdapter extends RecyclerView.Adapter<Cust
 
         public void setName(String name){
             this.name = name;
-            this.txtTitleExercises.setText(name);
+            this.txtTitleExercises.setText(this.name);
         }
     }
 
