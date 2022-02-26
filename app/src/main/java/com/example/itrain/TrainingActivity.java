@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -31,40 +32,30 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class TrainingActivity extends AppCompatActivity implements CustomRecyclerViewTrainingAdapter.ItemClickListener {
-    private RecyclerView RecyclerViewExercises;
-    private ProgressBar loadingExercises;
+    private RecyclerView ta_RecyclerView;
+    private ProgressBar ta_ProgressBar;
+    private TextView ta_txtTitle;
 
     private String pathDir;
-    private ArrayList<String> names;
+    private ArrayList<String> namesFiles;
 
     protected CustomRecyclerViewTrainingAdapter customRecyclerViewTrainingAdapter;
-
-    private static final int STORAGE_PERMISSION_CODE = 101;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_training);
 
-        RecyclerViewExercises = (RecyclerView) findViewById(R.id.RecyclerViewExercises);
-        loadingExercises = (ProgressBar) findViewById(R.id.loadingExercises);
+        ta_RecyclerView = (RecyclerView) findViewById(R.id.AT_recyclerViewExercise);
+        ta_ProgressBar = (ProgressBar) findViewById(R.id.AT_progressBarExercise);
+        ta_txtTitle = (TextView) findViewById(R.id.AT_txtTitle);
 
-        if (ContextCompat.checkSelfPermission(TrainingActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
-            ActivityCompat.requestPermissions(TrainingActivity.this, new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE }, STORAGE_PERMISSION_CODE);
+        this.pathDir = getIntent().getExtras().getString("path");
+        ta_txtTitle.setText(getIntent().getExtras().getString("nameTraining"));
 
-            if (ContextCompat.checkSelfPermission(TrainingActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_DENIED) {
-                // TODO close the app instead toast
-                Toast.makeText(TrainingActivity.this, "App not working anymore", Toast.LENGTH_SHORT).show();
-            }
-        }
-
-        this.pathDir = getFilesDir().toString();
         File directory = new File(pathDir);
-        if (!directory.exists() || !directory.isDirectory())
-            directory.mkdir();
-
         File[] files = directory.listFiles();
-        this.names = new ArrayList<String>();
+        this.namesFiles = new ArrayList<String>();
         for (File fileName : files) {
             if (!fileName.isFile())
                 continue;
@@ -77,10 +68,10 @@ public class TrainingActivity extends AppCompatActivity implements CustomRecycle
                 continue;
             }
 
-            names.add(name);
+            namesFiles.add(name);
         }
 
-        Log.d("###", names.toString());
+        Log.d("###", namesFiles.toString());
 
 
         File f = new File(pathDir);
@@ -90,14 +81,14 @@ public class TrainingActivity extends AppCompatActivity implements CustomRecycle
         }
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        RecyclerViewExercises.setLayoutManager(layoutManager);
+        ta_RecyclerView.setLayoutManager(layoutManager);
 
-        this.customRecyclerViewTrainingAdapter = new CustomRecyclerViewTrainingAdapter(this, names);
+        this.customRecyclerViewTrainingAdapter = new CustomRecyclerViewTrainingAdapter(this, namesFiles);
         customRecyclerViewTrainingAdapter.setClickListener(this);
 
-        RecyclerViewExercises.setAdapter(customRecyclerViewTrainingAdapter);
+        ta_RecyclerView.setAdapter(customRecyclerViewTrainingAdapter);
 
-        loadingExercises.setVisibility(View.INVISIBLE);
+        ta_ProgressBar.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -119,7 +110,6 @@ public class TrainingActivity extends AppCompatActivity implements CustomRecycle
 
         EditText editTextTitleExercise = (EditText) dialogView.findViewById(R.id.editTextTitleExercise);
         EditText editTextTime = (EditText) dialogView.findViewById(R.id.editTextTime);
-        Spinner spinnerType = (Spinner) dialogView.findViewById(R.id.spinnerType);
         EditText editTextSetting = (EditText) dialogView.findViewById(R.id.editTextSetting);
 
         alertDialog.setPositiveButton("Save",
@@ -127,7 +117,6 @@ public class TrainingActivity extends AppCompatActivity implements CustomRecycle
                     public void onClick(DialogInterface dialog, int which) {
                         String fileName = editTextTitleExercise.getText().toString();
                         int time = Integer.parseInt(editTextTime.getText().toString());
-                        String type = spinnerType.getSelectedItem().toString();
                         String setting = editTextSetting.getText().toString();
 
                         FileOutputStream fos = null;
@@ -139,19 +128,14 @@ public class TrainingActivity extends AppCompatActivity implements CustomRecycle
                             json.put("name", fileName);
                             json.put("message", "");
                             json.put("time", time);
-                            json.put("type", type);
                             json.put("setting", setting);
                             fos.write((json.toString()).getBytes());
-                        } catch (FileNotFoundException e) {
-                            e.printStackTrace();
-                        } catch (IOException e) {
-                            e.printStackTrace();
-                        } catch (JSONException e) {
+                        } catch (IOException | JSONException e) {
                             e.printStackTrace();
                         }
 
                         int pos = customRecyclerViewTrainingAdapter.getItemCount();
-                        names.add(fileName);
+                        namesFiles.add(fileName);
                         customRecyclerViewTrainingAdapter.notifyItemInserted(pos);
                     }
                 });
@@ -162,10 +146,5 @@ public class TrainingActivity extends AppCompatActivity implements CustomRecycle
                     }
                 });
         alertDialog.show();
-    }
-
-    public void sortNamesPerpetual(View view){
-        Collections.sort(names);
-        customRecyclerViewTrainingAdapter.notifyDataSetChanged();
     }
 }

@@ -56,7 +56,6 @@ public class ExerciseActivity extends AppCompatActivity {
 
     private String message;
     private int time;
-    private String type;
     private String setting;
 
     private AnimatorSet animation = null;
@@ -66,22 +65,13 @@ public class ExerciseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_exercise);
 
-        /*ExerciseDatabase db = Room.databaseBuilder(getApplicationContext(),
-                ExerciseDatabase.class, "iTrain").build();
-        ExerciseDAO exerciseDao = db.ExerciseDAO();
-        List<Exercise> Exercises = exerciseDao.getAll();*/
-
-        /*Exercise e1 = new Exercise("Press", "1+1", 1, Exercise.enumType.type_leg, "");
-        Exercise e2 = new Exercise("Chest", "2+2", 1, Exercise.enumType.type_leg, "");
-        Exercise e3 = new Exercise("Back", "3+3", 1, Exercise.enumType.type_leg, "");*/
-
         this.fileName = getIntent().getExtras().getString("name");
         this.path2file = getIntent().getExtras().getString("path2file");
 
         txtTitleExercises = (TextView) findViewById(R.id.txtTitleExercises);
         txtTitleExercises.setText(fileName);
 
-        txtDataExercise = (EditText) findViewById(R.id.txtDataExercise);
+        txtDataExercise = (EditText) findViewById(R.id.AE_txtDataExercise);
         txtDataExercise.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -114,7 +104,6 @@ public class ExerciseActivity extends AppCompatActivity {
 
             this.message = json.getString("message");
             this.time = json.getInt("time");
-            this.type = json.getString("type");
             this.setting = json.getString("setting");
         }
         catch (IOException e) {
@@ -126,18 +115,17 @@ public class ExerciseActivity extends AppCompatActivity {
 
             this.message = "";
             this.time = 60;
-            this.type = "";
             this.setting = "";
         }
 
-        timeTest = (TextView) findViewById(R.id.timeTest);
-        settingTest = (TextView) findViewById(R.id.settingTest);
+        timeTest = (TextView) findViewById(R.id.AE_timeTest);
+        settingTest = (TextView) findViewById(R.id.AE_settingTest);
         updateTexts();
 
 
         backgroundTimer = (RelativeLayout) findViewById(R.id.backgroundTimer);
 
-        btnDellExercise = (ImageButton) findViewById(R.id.btnDellExercise);
+        btnDellExercise = (ImageButton) findViewById(R.id.AE_btnDellExercise);
         btnDellExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -165,7 +153,7 @@ public class ExerciseActivity extends AppCompatActivity {
                 alertDialog.show();
             }
         });
-        btnSettingsExercise = (ImageButton) findViewById(R.id.btnSettingsExercise);
+        btnSettingsExercise = (ImageButton) findViewById(R.id.AE_btnSettingsExercise);
         btnSettingsExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -178,13 +166,6 @@ public class ExerciseActivity extends AppCompatActivity {
 
                 EditText editTextTime = (EditText) dialogView.findViewById(R.id.editTextTime);
                 editTextTime.setText(String.valueOf(time));
-                Spinner spinnerType = (Spinner) dialogView.findViewById(R.id.spinnerType);
-                for (int i=0;i<spinnerType.getCount();i++){
-                    if (spinnerType.getItemAtPosition(i).equals(type)){
-                        spinnerType.setSelection(i);
-                        break;
-                    }
-                }
                 EditText editTextSetting = (EditText) dialogView.findViewById(R.id.editTextSetting);
                 editTextSetting.setText(setting);
 
@@ -192,13 +173,11 @@ public class ExerciseActivity extends AppCompatActivity {
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 int appTime = Integer.parseInt(editTextTime.getText().toString());
-                                String appType = spinnerType.getSelectedItem().toString();
                                 String appSetting = editTextSetting.getText().toString();
 
                                 // TODO check correctness
 
                                 time = appTime;
-                                type = appType;
                                 setting = appSetting;
 
                                 saveDataOnFile();
@@ -214,7 +193,7 @@ public class ExerciseActivity extends AppCompatActivity {
                 alertDialog.show();
             }
         });
-        btnTimerExercise = (ImageButton) findViewById(R.id.btnTimerExercise);
+        btnTimerExercise = (ImageButton) findViewById(R.id.AE_btnTimerExercise);
         btnTimerExercise.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -285,7 +264,6 @@ public class ExerciseActivity extends AppCompatActivity {
             json.put("name", this.fileName);
             json.put("message", this.txtDataExercise.getText().toString());
             json.put("time", this.time);
-            json.put("type", this.type);
             json.put("setting", this.setting);
 
             fos.write((json.toString()).getBytes());

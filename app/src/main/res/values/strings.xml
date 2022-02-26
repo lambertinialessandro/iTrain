@@ -3,10 +3,14 @@
 
     <string name="NaS">NaS</string>
 
+    <!-- activity_main -->
+    <string name="am_title">@string/app_name</string>
+    <string name="am_contexDescBtnAddExercise">add new training</string>
+
     <!-- activity_training -->
     <string name="at_title">@string/app_name</string>
     <string name="at_contexDescBtnAddExercise">add new exercise</string>
-    <string name="at_contexDescBtnChangeSort">sort exercises</string>
+    <string name="at_contexDescBtnDeleteSort">delete exercise</string>
 
     <!-- activity_exercise -->
     <string name="ae_textTimeLable">Time</string>
@@ -37,4 +41,5 @@
     <!-- exercise enumerator -->
     <string name="leg_type">leg</string>
     <string name="arm_type">arm</string>
+    <string name="back_type">back</string>
 </resources>

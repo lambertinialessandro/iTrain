@@ -7,7 +7,6 @@
     android:layout_height="wrap_content">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/rlBtnInfoExercise"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="10dp"
@@ -25,65 +24,33 @@
             android:padding="5dp">
 
             <TextView
-                android:id="@+id/txtTime"
+                android:id="@+id/ADAT_txtTitleTraining"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
-                android:text="@string/adme_textTime"
+                android:text="@string/adae_textTitleExercise"
                 android:textColor="@color/TitleTrainingRowColor"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 tools:ignore="TextContrastCheck" />
 
             <EditText
-                android:id="@+id/editTextTime"
+                android:id="@+id/ADAT_editTextTitleTraining"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignStart="@id/txtTime"
+                android:layout_alignStart="@id/ADAT_txtTitleTraining"
                 android:layout_marginVertical="10dp"
                 android:layout_marginStart="100dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
-                android:hint="@string/adme_hintTime"
-                android:importantForAutofill="no"
-                android:inputType="number"
-                android:text="@string/adme_textHintTime"
-                android:textSize="24sp" />
-
-            <TextView
-                android:id="@+id/txtSetting"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/editTextTime"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="10dp"
-                android:text="@string/adme_textSetting"
-                android:textColor="@color/TitleTrainingRowColor"
-                android:textSize="24sp"
-                android:textStyle="bold"
-                tools:ignore="TextContrastCheck" />
-
-            <EditText
-                android:id="@+id/editTextSetting"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/editTextTime"
-                android:layout_alignStart="@id/txtSetting"
-                android:layout_marginVertical="10dp"
-                android:layout_marginStart="100dp"
-                android:layout_marginEnd="10dp"
-                android:layout_marginBottom="10dp"
-                android:hint="@string/adme_hintSetting"
+                android:hint="@string/ae_hintDataExercise"
                 android:importantForAutofill="no"
                 android:inputType="text"
-                android:text=""
+                android:textColorHint="#795548"
                 android:textSize="24sp"
                 tools:ignore="TextContrastCheck" />
-
-            <!-- Button -->
 
         </RelativeLayout>
 

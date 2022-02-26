@@ -7,7 +7,7 @@
     android:layout_height="wrap_content">
 
     <RelativeLayout
-        android:id="@+id/relativeTitle"
+        android:id="@+id/AE_relativeLayoutTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginEnd="0dp"
@@ -16,20 +16,20 @@
         android:padding="5dp">
 
         <TextView
-            android:id="@+id/txtTitleExercises"
+            android:id="@+id/AE_txtTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="30dp"
-            android:layout_centerVertical="true"
-            android:layout_toStartOf="@id/cardDellExercise"
+            android:layout_toStartOf="@id/AE_cardDellExercise"
             android:text="@string/NaS"
             android:textColor="@color/TitleExercise"
             android:textSize="24sp"
             android:textStyle="bold" />
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardSettingsExercise"
+            android:id="@+id/AE_cardSettingsExercise"
             android:layout_width="48dp"
             android:layout_height="48dp"
             android:layout_alignParentEnd="true"
@@ -40,7 +40,7 @@
             app:cardElevation="6dp">
 
             <ImageButton
-                android:id="@+id/btnSettingsExercise"
+                android:id="@+id/AE_btnSettingsExercise"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="?android:attr/selectableItemBackground"
@@ -52,10 +52,10 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardDellExercise"
+            android:id="@+id/AE_cardDellExercise"
             android:layout_width="48dp"
             android:layout_height="48dp"
-            android:layout_toStartOf="@+id/cardSettingsExercise"
+            android:layout_toStartOf="@+id/AE_cardSettingsExercise"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="25dp"
             android:layout_marginBottom="5dp"
@@ -63,7 +63,7 @@
             app:cardElevation="6dp">
 
             <ImageButton
-                android:id="@+id/btnDellExercise"
+                android:id="@+id/AE_btnDellExercise"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="?android:attr/selectableItemBackground"
@@ -82,7 +82,7 @@
         android:layout_height="match_parent"
         android:layout_marginEnd="0dp"
         android:orientation="vertical"
-        android:layout_below="@+id/relativeTitle">
+        android:layout_below="@+id/AE_relativeLayoutTitle">
 
         <RelativeLayout
             android:id="@+id/backgroundTimer"
@@ -94,7 +94,7 @@
             android:orientation="vertical" />
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardTimerExercise"
+            android:id="@+id/AE_cardTimerExercise"
             android:layout_width="match_parent"
             android:layout_height="55dp"
             android:layout_marginTop="10dp"
@@ -104,7 +104,7 @@
             app:cardElevation="6dp">
 
             <ImageButton
-                android:id="@+id/btnTimerExercise"
+                android:id="@+id/AE_btnTimerExercise"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:alpha="0.5"
@@ -119,10 +119,10 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardDataExercise"
+            android:id="@+id/AE_cardDataExercise"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/cardTimerExercise"
+            android:layout_below="@+id/AE_cardTimerExercise"
             android:layout_marginTop="10dp"
             android:layout_marginHorizontal="10dp"
             android:layout_marginBottom="20dp"
@@ -131,7 +131,7 @@
             app:cardElevation="6dp">
 
             <EditText
-                android:id="@+id/txtDataExercise"
+                android:id="@+id/AE_txtDataExercise"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/txtTitleExercises"
@@ -150,42 +150,42 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
-            android:id="@+id/timeLable"
+            android:id="@+id/AE_timeLable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/cardDataExercise"
+            android:layout_below="@+id/AE_cardDataExercise"
             android:layout_marginVertical="10dp"
             android:layout_marginStart="15dp"
             android:text="@string/ae_textTimeLable"
             android:textSize="24sp" />
 
         <TextView
-            android:id="@+id/timeTest"
+            android:id="@+id/AE_timeTest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/cardDataExercise"
-            android:layout_alignStart="@+id/timeLable"
+            android:layout_below="@+id/AE_cardDataExercise"
+            android:layout_alignStart="@+id/AE_timeLable"
             android:layout_marginVertical="10dp"
             android:layout_marginStart="100dp"
             android:text=""
             android:textSize="24sp" />
 
         <TextView
-            android:id="@+id/settingLable"
+            android:id="@+id/AE_settingLable"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/timeLable"
+            android:layout_below="@+id/AE_timeLable"
             android:layout_marginVertical="10dp"
             android:layout_marginStart="15dp"
             android:text="@string/ae_textSettingLable"
             android:textSize="24sp" />
 
         <TextView
-            android:id="@+id/settingTest"
+            android:id="@+id/AE_settingTest"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/timeLable"
-            android:layout_alignStart="@+id/timeLable"
+            android:layout_below="@+id/AE_timeLable"
+            android:layout_alignStart="@+id/AE_timeLable"
             android:layout_marginStart="100dp"
             android:layout_marginVertical="10dp"
             android:text=""

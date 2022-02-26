@@ -10,7 +10,7 @@
 
     <!-- activity_training -->
     <color name="TitleTrainingColor">@color/white</color>
-    <color name="loadingBarTraining">@color/red</color>
+    <color name="loadingBarColor">@color/red</color>
 
     <!-- training_list_activity_row -->
     <color name="backgroundTrainingRow">@color/light_orange</color>

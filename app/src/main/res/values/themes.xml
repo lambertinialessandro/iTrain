@@ -3,7 +3,7 @@
     <style name="Theme.ITrain" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/TitleTrainingColor</item>
-        <item name="colorPrimaryVariant">@color/loadingBarTraining</item>
+        <item name="colorPrimaryVariant">@color/loadingBarColor</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/backgroundTrainingRow</item>
