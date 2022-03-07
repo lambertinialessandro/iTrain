@@ -60,6 +60,8 @@ public class ExerciseActivity extends AppCompatActivity {
 
     private AnimatorSet animation = null;
 
+    private boolean alreadySaved = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +78,10 @@ public class ExerciseActivity extends AppCompatActivity {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (!hasFocus) {
+                    alreadySaved = true;
                     saveDataOnFile();
+                } else {
+                    alreadySaved = false;
                 }
             }
         });
@@ -130,7 +135,7 @@ public class ExerciseActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 AlertDialog.Builder alertDialog = new AlertDialog.Builder(ExerciseActivity.this);
-                alertDialog.setTitle("Delete exercise");
+                alertDialog.setTitle("Delete exercise?");
 
                 alertDialog.setPositiveButton("Yes",
                         new DialogInterface.OnClickListener() {
@@ -165,7 +170,7 @@ public class ExerciseActivity extends AppCompatActivity {
                 EditText editTextSetting = (EditText) dialogView.findViewById(R.id.editTextSetting);
                 editTextSetting.setText(setting);
 
-                alertDialog.setPositiveButton("Modify",
+                alertDialog.setPositiveButton("Save",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int which) {
                                 int appTime = Integer.parseInt(editTextTime.getText().toString());
@@ -293,5 +298,14 @@ public class ExerciseActivity extends AppCompatActivity {
             }
         }
         return super.dispatchTouchEvent(event);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if (alreadySaved == false) {
+            saveDataOnFile();
+        }
     }
 }

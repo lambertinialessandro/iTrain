@@ -145,7 +145,7 @@ public class TrainingActivity extends AppCompatActivity implements CustomRecycle
 
     public void dellTrainClick(View view) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(TrainingActivity.this);
-        alertDialog.setTitle("Delete exercise");
+        alertDialog.setTitle("Delete workout?");
 
         alertDialog.setPositiveButton("Yes",
                 new DialogInterface.OnClickListener() {

@@ -46,9 +46,9 @@
                 android:layout_marginStart="100dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
-                android:hint="@string/ae_hintDataExercise"
+                android:hint="@string/adae_hintTitleExercise"
                 android:importantForAutofill="no"
-                android:inputType="text"
+                android:inputType="textCapSentences"
                 android:textColorHint="#795548"
                 android:textSize="24sp"
                 tools:ignore="TextContrastCheck" />
@@ -77,11 +77,11 @@
                 android:layout_marginStart="100dp"
                 android:layout_marginEnd="10dp"
                 android:layout_marginBottom="10dp"
+                android:hint="@string/adae_hintTime"
+                android:importantForAutofill="no"
                 android:inputType="number"
                 android:text="@string/adae_textHintTime"
-                android:hint="@string/adae_hintTime"
-                android:textSize="24sp"
-                android:importantForAutofill="no" />
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/txtSetting"

@@ -20,13 +20,16 @@
     <string name="ae_contexDescBtnDellE">delete exercise</string>
     <string name="ae_contexDescBtnTimerE">start timer</string>
 
+    <!-- alter_dialog_add_training -->
+    <string name="adat_textTitleTraining">Name</string>
+    <string name="adat_hintTitleTraining">training name</string>
+
     <!-- alter_dialog_add_exercise -->
     <string name="adae_textTitleExercise">Name</string>
     <string name="adae_hintTitleExercise">exercise name</string>
     <string name="adae_textTime">Time</string>
     <string name="adae_textHintTime">60</string>
     <string name="adae_hintTime">time in seconds</string>
-    <string name="adae_textType">Type</string>
     <string name="adae_textSetting">Setting</string>
     <string name="adae_hintSetting">machine settings</string>
 
@@ -34,7 +37,6 @@
     <string name="adme_textTime">Time</string>
     <string name="adme_textHintTime">60</string>
     <string name="adme_hintTime">time in seconds</string>
-    <string name="adme_textType">Type</string>
     <string name="adme_textSetting">Setting</string>
     <string name="adme_hintSetting">machine settings</string>
 
