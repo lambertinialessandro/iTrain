@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -33,36 +34,48 @@
             android:layout_marginBottom="10dp"
             android:text="@string/NaS"
             android:textColor="@color/TitleTrainingColor"
-            android:textSize="30sp"
+            android:textSize="26sp"
             android:textStyle="bold" />
 
-        <ImageButton
-            android:id="@+id/AT_btnAddExercise"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/AT_cardBtns"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="10dp"
-            android:background="?android:attr/selectableItemBackground"
-            android:onClick="addNewExerciseClick"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_baseline_add_24"
-            android:contentDescription="@string/at_contexDescBtnAddExercise"/>
+            app:cardCornerRadius="12dp"
+            app:cardElevation="6dp">
 
-        <ImageButton
-            android:id="@+id/AT_btnDeleteSort"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="25dp"
-            android:layout_marginBottom="10dp"
-            android:layout_toStartOf="@id/AT_btnAddExercise"
-            android:background="?android:attr/selectableItemBackground"
-            android:contentDescription="@string/at_contexDescBtnDeleteSort"
-            android:onClick="sortNamesPerpetual"
-            android:scaleType="fitCenter"
-            android:src="@drawable/ic_baseline_delete_forever_24" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/AT_btnDeleteSort"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_margin="5dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:contentDescription="@string/at_contexDescBtnDeleteSort"
+                    android:onClick="dellTrainClick"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_baseline_delete_forever_24" />
+
+                <ImageButton
+                    android:id="@+id/AT_btnAddExercise"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_margin="5dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:contentDescription="@string/at_contexDescBtnAddExercise"
+                    android:onClick="addNewExerciseClick"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_baseline_add_24" />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
     </RelativeLayout>
 
     <RelativeLayout

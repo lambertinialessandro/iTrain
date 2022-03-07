@@ -12,6 +12,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -57,6 +58,19 @@ public class MainActivity extends AppCompatActivity implements CustomRecyclerVie
         }
 
         this.pathDir = getFilesDir().toString();
+
+        loadData();
+
+        //File f = new File(pathDir);
+        //for (File ff : f.listFiles()){
+            //Log.d("###", ff.getName());
+            //ff.delete();
+        //}
+
+        ma_ProgressBar.setVisibility(View.INVISIBLE);
+    }
+
+    public void loadData(){
         File directory = new File(this.pathDir);
 
         if (!directory.exists() || !directory.isDirectory()) {
@@ -65,7 +79,7 @@ public class MainActivity extends AppCompatActivity implements CustomRecyclerVie
             File[] files = directory.listFiles();
             this.namesDirs = new ArrayList<String>();
             for (File fileName : files) {
-                if (!fileName.isFile())
+                if (!fileName.isDirectory())
                     continue;
 
                 String name = "";
@@ -87,8 +101,6 @@ public class MainActivity extends AppCompatActivity implements CustomRecyclerVie
         customRecyclerViewTrainingAdapter.setClickListener(this);
 
         ma_RecyclerView.setAdapter(customRecyclerViewTrainingAdapter);
-
-        ma_ProgressBar.setVisibility(View.INVISIBLE);
     }
 
     public void addNewTrainClick(View view) {
@@ -132,5 +144,12 @@ public class MainActivity extends AppCompatActivity implements CustomRecyclerVie
         intent.putExtra("path", pathDir+"/"+name);
         intent.putExtra("nameTraining", name);
         this.startActivity(intent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        loadData();
     }
 }

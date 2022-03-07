@@ -22,56 +22,48 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="30dp"
-            android:layout_toStartOf="@id/AE_cardDellExercise"
+            android:layout_toStartOf="@id/AE_cardBtns"
             android:text="@string/NaS"
             android:textColor="@color/TitleExercise"
             android:textSize="24sp"
             android:textStyle="bold" />
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/AE_cardSettingsExercise"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:id="@+id/AE_cardBtns"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
             android:layout_alignParentEnd="true"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="5dp"
             app:cardCornerRadius="12dp"
             app:cardElevation="6dp">
 
-            <ImageButton
-                android:id="@+id/AE_btnSettingsExercise"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="?android:attr/selectableItemBackground"
-                android:tint="@color/light_orange"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_baseline_settings_24"
-                android:contentDescription="@string/ae_contexDescBtnSettingsE"/>
+                android:orientation="horizontal">
 
-        </androidx.cardview.widget.CardView>
+                <ImageButton
+                    android:id="@+id/AE_btnDellExercise"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_margin="5dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_baseline_delete_forever_24"
+                    android:contentDescription="@string/ae_contexDescBtnDellE"/>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/AE_cardDellExercise"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_toStartOf="@+id/AE_cardSettingsExercise"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="25dp"
-            android:layout_marginBottom="5dp"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="6dp">
-
-            <ImageButton
-                android:id="@+id/AE_btnDellExercise"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="?android:attr/selectableItemBackground"
-                android:tint="@color/light_red"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_baseline_delete_forever_24"
-                android:contentDescription="@string/ae_contexDescBtnDellE"/>
-
+                <ImageButton
+                    android:id="@+id/AE_btnSettingsExercise"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_margin="5dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_baseline_settings_24"
+                    android:contentDescription="@string/ae_contexDescBtnSettingsE"/>
+            </LinearLayout>
         </androidx.cardview.widget.CardView>
 
     </RelativeLayout>

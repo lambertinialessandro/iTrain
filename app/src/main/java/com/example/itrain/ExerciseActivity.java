@@ -68,8 +68,8 @@ public class ExerciseActivity extends AppCompatActivity {
         this.fileName = getIntent().getExtras().getString("name");
         this.path2file = getIntent().getExtras().getString("path2file");
 
-        txtTitleExercises = (TextView) findViewById(R.id.txtTitleExercises);
-        txtTitleExercises.setText(fileName);
+        txtTitleExercises = (TextView) findViewById(R.id.AE_txtTitle);
+        txtTitleExercises.setText(this.fileName);
 
         txtDataExercise = (EditText) findViewById(R.id.AE_txtDataExercise);
         txtDataExercise.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -137,11 +137,7 @@ public class ExerciseActivity extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 File file = new File(path2file);
                                 file.delete();
-
-                                // TODO open new training without backstory
-                                Intent intent = new Intent(ExerciseActivity.this, TrainingActivity.class);
-                                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                                ExerciseActivity.this.startActivity(intent);
+                                finish();
                             }
                         });
                 alertDialog.setNegativeButton("No",

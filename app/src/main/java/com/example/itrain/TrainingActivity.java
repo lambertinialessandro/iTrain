@@ -53,6 +53,10 @@ public class TrainingActivity extends AppCompatActivity implements CustomRecycle
         this.pathDir = getIntent().getExtras().getString("path");
         ta_txtTitle.setText(getIntent().getExtras().getString("nameTraining"));
 
+        loadData();
+    }
+
+    public void loadData(){
         File directory = new File(pathDir);
         File[] files = directory.listFiles();
         this.namesFiles = new ArrayList<String>();
@@ -69,15 +73,6 @@ public class TrainingActivity extends AppCompatActivity implements CustomRecycle
             }
 
             namesFiles.add(name);
-        }
-
-        Log.d("###", namesFiles.toString());
-
-
-        File f = new File(pathDir);
-        for (File ff : f.listFiles()){
-            Log.d("###", ff.getName());
-            //ff.delete();
         }
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
@@ -121,7 +116,7 @@ public class TrainingActivity extends AppCompatActivity implements CustomRecycle
 
                         FileOutputStream fos = null;
                         try {
-                            File ff = new File(getFilesDir() +"/"+fileName+".txt");
+                            File ff = new File(pathDir +"/"+fileName+".txt");
                             fos = new FileOutputStream(ff);
                             // TODO
                             JSONObject json = new JSONObject();
@@ -146,5 +141,44 @@ public class TrainingActivity extends AppCompatActivity implements CustomRecycle
                     }
                 });
         alertDialog.show();
+    }
+
+    public void dellTrainClick(View view) {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(TrainingActivity.this);
+        alertDialog.setTitle("Delete exercise");
+
+        alertDialog.setPositiveButton("Yes",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        File f = new File(pathDir);
+                        for (File ff : f.listFiles()){
+                            ff.delete();
+                        }
+
+                        f.delete();
+                        finish();
+
+                        // TODO open new training without backstory
+                        /*
+                        Intent intent = new Intent(TrainingActivity.this, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        TrainingActivity.this.startActivity(intent);
+                        */
+                    }
+                });
+        alertDialog.setNegativeButton("No",
+                new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+        alertDialog.show();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        loadData();
     }
 }
